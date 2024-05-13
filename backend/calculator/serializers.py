@@ -12,3 +12,18 @@ class ProductShortSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
         fields = ('id', 'name')
+
+
+class InvestmentRequestSerializer(serializers.Serializer):
+    producto = serializers.IntegerField()
+    enReinversion = serializers.BooleanField()
+    plazo = serializers.IntegerField()
+    fechaCreacion = serializers.DateTimeField()
+
+
+class InvestmentResponseSerializer(serializers.Serializer):
+    producto = serializers.IntegerField()
+    plazo = serializers.IntegerField()
+    fechaInicio = serializers.DateTimeField()
+    fechaFin = serializers.DateTimeField()
+    plazoReal = serializers.IntegerField()
