@@ -34,7 +34,7 @@ def calculate(request):
             if serializer.is_valid():
                 return JsonResponse(serializer.validated_data)
             else:
-                return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+                return JsonResponse(serializer.errors, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
         except Product.DoesNotExist:
             return JsonResponse({'message': 'El producto no existe.'}, status=status.HTTP_404_NOT_FOUND)
     else:
