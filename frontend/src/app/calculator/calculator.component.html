@@ -1,1 +1,52 @@
-<p>calculator works!</p>
+<div class="back">
+    <div class="div-center">
+        <div class="content">
+            <h2>Calculadora de Inversión</h2>
+            <br>
+            <div class="col-md-12">
+                <div class="row"><label for="productSelect"><strong>Producto:</strong></label></div>
+                <div class="row" style="margin-left: 1px;">
+                    <select id="productSelect" [(ngModel)]="producto">
+                        <option *ngFor="let product of products" [value]="product.id">{{ product.name }}</option>
+                    </select>
+                </div>
+
+                <div style="margin-top: 20px;">
+                    <label>
+                        <input type="checkbox" [(ngModel)]="enReinversion"> <strong> Es una reinversión?</strong>
+                    </label>
+                </div>
+
+                <div style="margin-top: 20px;">
+                    <div class="row"><label for="selectedDate"><strong>Fecha de Creación:</strong></label></div>
+                    <input type="datetime-local" id="selectedDate" [(ngModel)]="fechaCreacion">
+                </div>
+
+                <div style="margin-top: 20px;">
+                    <label for="periodInput"><strong>Plazo en días:</strong></label>
+                    <br>
+                    <input type="number" id="periodInput" [(ngModel)]="plazo" min="1">
+                </div>
+
+                <div class="d-grid gap-2" style="margin-top: 20px;">
+                    <button class="btn btn-primary" (click)="calculate()">Calcular</button>
+                </div>
+
+            </div>
+            
+            <div *ngIf="this.showError">
+                <p>{{this.errorText}}</p>
+            </div>
+
+            <div *ngIf="this.investmentResponse !== null">
+                <hr>
+                <div style="margin-top: 30px;">
+                    <h4>Resultado:</h4>
+                    <p><strong>Fecha Inicio:</strong> {{ this.investmentResponse.fechaInicio | date:'medium' }}</p>
+                    <p><strong>Fecha Fin:</strong> {{ this.investmentResponse.fechaFin | date:'medium' }}</p>
+                    <p><strong>Plazo Real:</strong> {{ this.investmentResponse.plazoReal }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

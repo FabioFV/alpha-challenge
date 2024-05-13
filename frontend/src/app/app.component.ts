@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SessionService } from './_services/session.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,17 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'frontend';
+  isLoggedIn = false;
+  username?: string;
+
+  constructor(private sessionService: SessionService) { }
+
+  ngOnInit(): void {
+    this.isLoggedIn = this.sessionService.isLoggedIn();
+  }
+
+  onLoggedIn(isUserLoggedIn: boolean) {
+    this.isLoggedIn = isUserLoggedIn;
+  }
+
 }
